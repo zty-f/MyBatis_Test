@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties">
+    </properties>
+<!--    配置日志，可以使得执行的SQL语句结果更加清晰-->
+<!--    <settings>-->
+    <settings>
+<!--        第一种：标准日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+
+<!--       第二种：log4j日志-->
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+<!--    </settings>-->
+<!--        解决数据库驼峰命名法和数据库不匹配问�?-->
+
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+<!--    可以给实体类起别�?-->
+
+    <typeAliases>
+        <package name="com.zty.pojo"/>
+    </typeAliases>
+
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${mysql.driver}"/>
+                <property name="url" value="${mysql.url}"/>
+                <property name="username" value="${mysql.username}"/>
+                <property name="password" value="${mysql.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com/zty/dao/Mapper.xml"/>
+    </mappers>
+</configuration>

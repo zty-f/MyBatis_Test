@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace表示连接对应一个Dao/Mapper接口-->
+<mapper namespace="com.zty.dao.UserDao">
+    <select id="getUserList" resultType="com.zty.pojo.User">
+        select * from mybatis.user_fo;
+    </select>
+<!--    对象中的属性可以直接取出来-->
+    <insert id="addUser" parameterType="com.zty.pojo.User">
+        insert into mybatis.user_fo(id,name,pwd)values (#{id},#{name},#{pwd});
+    </insert>
+
+    <update id="updateUser" parameterType="com.zty.pojo.User">
+        update mybatis.user_fo
+        set pwd =#{pwd}
+        where id=#{id};
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis.user_fo where id=#{id};
+    </delete>
+
+</mapper>
